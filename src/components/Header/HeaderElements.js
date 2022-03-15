@@ -28,6 +28,7 @@ export const ThemeSwitch = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
+  cursor: pointer;
 `;
 
 export const Mode = styled.p`
