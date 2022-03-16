@@ -26,6 +26,11 @@ const Body = () => {
         population={info.population}
         region={info.region}
         capital={info.capital}
+        nativeName={info.nativeName}
+        subRegion={info.subregion}
+        tld={info.topLevelDomain} //array
+        currencies={info.currencies} //array
+        languages={info.languages} //array
       />
     );
   };
