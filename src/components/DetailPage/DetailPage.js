@@ -59,7 +59,9 @@ const DetailPage = (props) => {
                 <Label>Languages: </Label>
               </Category>
             </Info>
-            <Borders>borders</Borders>
+            <Borders>
+              <Label>Border Countries: </Label>
+            </Borders>
           </CountryInfoWrap>
         </InfoContainer>
       </DetailWrapper>

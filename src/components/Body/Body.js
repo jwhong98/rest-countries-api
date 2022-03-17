@@ -13,7 +13,8 @@ import DropDown from "./DropDown";
 
 const Body = () => {
   const [countries, setCountries] = useState([]);
-  const [filter, setFilter] = useState("");
+  const [nameFilter, setNameFilter] = useState("");
+  const [regionFilter, setRegionFilter] = useState("");
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -35,9 +36,38 @@ const Body = () => {
     );
   };
 
-  const filterChangeHandler = (filter) => {
-    console.log(filter);
-    setFilter(filter);
+  const nameChangeHandler = (e) => {
+    setNameFilter(e.target.value);
+  };
+
+  const regionChangeHandler = (filter) => {
+    // console.log(filter);
+    // setRegionFilter(filter);
+    let filteredCountries = countries.filter(
+      (country) => country.region === filter
+    );
+    setCountries(filteredCountries);
+  };
+
+  const filterByName = (filteredData) => {
+    if (!nameFilter) {
+      return filteredData;
+    }
+    const filteredCountries = filteredData.filter(
+      (country) => country.name.split("").indexOf(nameFilter) !== -1
+    );
+    setCountries(filteredCountries);
+  };
+
+  const filterByRegion = (filteredData) => {
+    if (!regionFilter) {
+      return filteredData;
+    }
+
+    const filteredCountries = filteredData.filter(
+      (country) => country.region === regionFilter
+    );
+    return filteredCountries;
   };
 
   useEffect(() => {
@@ -65,9 +95,9 @@ const Body = () => {
           <Filters>
             <FilterInput
               placeholder="Search for a country..."
-              onChange={filterChangeHandler}
+              onChange={nameChangeHandler}
             />
-            <DropDown onFilter={filterChangeHandler} />
+            <DropDown onFilter={regionChangeHandler} />
             {/* <StyledDropDown className="d-inline mx-2">
               <StyledDropDown.Toggle id="dropdown-autoclose-true">
                 Filter by Region

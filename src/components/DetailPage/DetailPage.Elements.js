@@ -29,6 +29,7 @@ export const BackBtn = styled.button`
   background-color: #fff;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 8px;
+  cursor: pointer;
 `;
 
 export const InfoContainer = styled.div`
