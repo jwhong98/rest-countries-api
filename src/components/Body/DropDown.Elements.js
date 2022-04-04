@@ -16,6 +16,7 @@ export const DropBtn = styled.button`
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
+  cursor: pointer;
 `;
 
 export const DropMenu = styled.ul`

@@ -42,6 +42,7 @@ export const InfoContainer = styled.div`
 
 export const InfoImgWrap = styled.div`
   width: 100%;
+  max-width: 500px;
 `;
 
 export const InfoImg = styled.img`

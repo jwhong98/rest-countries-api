@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   DetailContainer,
   DetailWrapper,
@@ -13,54 +13,62 @@ import {
   Label,
   Borders,
 } from "./DetailPage.Elements";
+import CountryContext from "../country/country-context";
 
 const DetailPage = (props) => {
+  const [context, setContext] = useContext(CountryContext);
+  const onClickHandler = () => {
+    console.log(context);
+  };
   return (
     <DetailContainer>
-      <DetailWrapper>
-        <BackBtn>
+      <DetailWrapper onClick={onClickHandler}>
+        <BackBtn onClick={props.clickHandler}>
           <ion-icon name="arrow-back-outline"></ion-icon>Back
         </BackBtn>
         <InfoContainer>
           <InfoImgWrap>
-            <InfoImg src={props.flag} />
+            <InfoImg src={context.flag} />
           </InfoImgWrap>
           <CountryInfoWrap>
-            <Name>{props.name}</Name>
+            <Name>{context.name}</Name>
             <Info>
               <Category>
                 <Label>Native Name: </Label>
-                {props.nativeName}
+                {context.nativeName}
               </Category>
               <Category>
                 <Label>Population: </Label>
-                {props.population}
+                {context.population}
               </Category>
               <Category>
                 <Label>Region: </Label>
-                {props.region}
+                {context.region}
               </Category>
               <Category>
                 <Label>Sub Region: </Label>
-                {props.subRegion}
+                {context.subRegion}
               </Category>
               <Category>
                 <Label>Capital: </Label>
-                {props.capital}
+                {context.capital}
               </Category>
               <Category>
                 <Label>Top Level Domain: </Label>
-                {props.tld}
+                {context.tld}
               </Category>
               <Category>
                 <Label>Currencies: </Label>
+                {context.currencies}
               </Category>
               <Category>
                 <Label>Languages: </Label>
+                {context.languages}
               </Category>
             </Info>
             <Borders>
               <Label>Border Countries: </Label>
+              {context.borders}
             </Borders>
           </CountryInfoWrap>
         </InfoContainer>

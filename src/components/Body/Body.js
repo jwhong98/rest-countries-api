@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import Card from "../Card/Card";
-// import Dropdown from "react-bootstrap/Dropdown";
+
 import {
   BodyContainer,
   BodyWrap,
   Filters,
   FilterInput,
   CountryDisplay,
-  // StyledDropDown,
 } from "./BodyElements";
 import DropDown from "./DropDown";
 
-const Body = () => {
+const Body = (props) => {
   const [countries, setCountries] = useState([]);
   const [nameFilter, setNameFilter] = useState("");
   const [regionFilter, setRegionFilter] = useState("");
@@ -32,6 +31,8 @@ const Body = () => {
         tld={info.topLevelDomain} //array
         currencies={info.currencies} //array
         languages={info.languages} //array
+        borders={info.borders}
+        clickHandler={props.clickHandler}
       />
     );
   };
@@ -41,34 +42,32 @@ const Body = () => {
   };
 
   const regionChangeHandler = (filter) => {
-    // console.log(filter);
-    // setRegionFilter(filter);
     let filteredCountries = countries.filter(
       (country) => country.region === filter
     );
     setCountries(filteredCountries);
   };
 
-  const filterByName = (filteredData) => {
-    if (!nameFilter) {
-      return filteredData;
-    }
-    const filteredCountries = filteredData.filter(
-      (country) => country.name.split("").indexOf(nameFilter) !== -1
-    );
-    setCountries(filteredCountries);
-  };
+  // const filterByName = (filteredData) => {
+  //   if (!nameFilter) {
+  //     return filteredData;
+  //   }
+  //   const filteredCountries = filteredData.filter(
+  //     (country) => country.name.split("").indexOf(nameFilter) !== -1
+  //   );
+  //   setCountries(filteredCountries);
+  // };
 
-  const filterByRegion = (filteredData) => {
-    if (!regionFilter) {
-      return filteredData;
-    }
+  // const filterByRegion = (filteredData) => {
+  //   if (!regionFilter) {
+  //     return filteredData;
+  //   }
 
-    const filteredCountries = filteredData.filter(
-      (country) => country.region === regionFilter
-    );
-    return filteredCountries;
-  };
+  //   const filteredCountries = filteredData.filter(
+  //     (country) => country.region === regionFilter
+  //   );
+  //   return filteredCountries;
+  // };
 
   useEffect(() => {
     fetch("https://restcountries.com/v2/all")
@@ -98,19 +97,6 @@ const Body = () => {
               onChange={nameChangeHandler}
             />
             <DropDown onFilter={regionChangeHandler} />
-            {/* <StyledDropDown className="d-inline mx-2">
-              <StyledDropDown.Toggle id="dropdown-autoclose-true">
-                Filter by Region
-              </StyledDropDown.Toggle>
-
-              <StyledDropDown.Menu>
-                <StyledDropDown.Item href="#">Africa</StyledDropDown.Item>
-                <StyledDropDown.Item href="#">America</StyledDropDown.Item>
-                <StyledDropDown.Item href="#">Asia</StyledDropDown.Item>
-                <StyledDropDown.Item href="#">Europe</StyledDropDown.Item>
-                <StyledDropDown.Item href="#">Oceania</StyledDropDown.Item>
-              </StyledDropDown.Menu>
-            </StyledDropDown> */}
           </Filters>
           <CountryDisplay>{countries.map(createCard)}</CountryDisplay>
         </BodyWrap>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import DetailPage from "../DetailPage/DetailPage";
 import {
   CardContainer,
@@ -10,31 +10,25 @@ import {
   Stat,
   Label,
 } from "./CardElements";
+import CountryContext from "../country/country-context";
 
 const Card = (props) => {
+  const [context, setContext] = useContext(CountryContext);
   const clickHandler = () => {
-    console.log(
-      <DetailPage
-        flag={props.flag}
-        name={props.name}
-        nativeName={props.nativeName}
-        population={props.population}
-        region={props.region}
-        subRegion={props.subRegion}
-        capital={props.capital}
-      />
-    );
-    return (
-      <DetailPage
-        flag={props.flag}
-        name={props.name}
-        nativeName={props.nativeName}
-        population={props.population}
-        region={props.region}
-        subRegion={props.subRegion}
-        capital={props.capital}
-      />
-    );
+    setContext({
+      flag: props.flag,
+      name: props.name,
+      nativeName: props.nativeName,
+      population: props.population,
+      region: props.region,
+      subRegion: props.subRegion,
+      capital: props.capital,
+      tld: props.topLevelDomain, //array
+      currencies: props.currencies[0].name, //array
+      // languages: props.languages, //array
+      borders: props.borders,
+    });
+    props.clickHandler();
   };
   return (
     <CardContainer onClick={clickHandler}>
